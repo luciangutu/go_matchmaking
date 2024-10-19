@@ -1,0 +1,15 @@
+title MatchMaking
+
+client->server:hello
+server->server:if 'hello', generate UUID
+client<-server:sends UUID
+client->server:sends 'token', VERSION, GameMode and UUID
+note over server:validates HEADER (VERSION)
+server->server:check if client has token
+note over server:creates client token
+client->server: sends 'match', VERSION, GameMode and UUID
+server->server:check if client has token
+server->server:find a match
+server->server:check if we have available GameServer
+note over server:Match created!
+note over server:GameServer info
